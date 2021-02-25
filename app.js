@@ -10,6 +10,8 @@ const {google} = require('googleapis');
 const queryParse = require("query-string");
 const urlParse = require("url-parse");
 const User = require('./models/user');
+const axios = require('axios');
+var qs = require('qs');
 
 const oauth2Client = new google.auth.OAuth2(
     "739982117038-d6epg8e60f9vkq2dp4fn73tgfrfdn1uo.apps.googleusercontent.com",
@@ -50,13 +52,17 @@ app.use((req, res, next) => {
     res.locals.userid = req.userid;
     next();
 })
+app.use((req , res , next) => {
+    console.log("session", req.session);
+    next();
+})
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
 /* ~~~~~~ Session ~~~~~~ */
 const sessionConfig = {
     secret: 'EHNkq4hTuqouhx9ag8eREMmu',
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7
@@ -95,6 +101,7 @@ app.get('/googleUser', async (req, res) => {
     const user = await User.findById(userid)
 
     if(!user){
+        req.session.userid = userid;
         const userOptions ={
             _id: userid,
             accountName: payload.name,
@@ -112,7 +119,37 @@ app.get('/googleUser', async (req, res) => {
 })
 
 
-app.get('/fetchToken', (req ,res) => {
+app.get('/fetchToken', async (req ,res) => {
+
+    console.log(req.session.userid)
+    const {refreshToken} = await User.findById(req.session.userid);
+
+
+    var data = qs.stringify({
+        'grant_type': 'refresh_token',
+        'refresh_token': refreshToken,
+        'valid_for': '60',
+        'client_id': '739982117038-d6epg8e60f9vkq2dp4fn73tgfrfdn1uo.apps.googleusercontent.com',
+        'client_secret': 'EHNkq4hTuqouhx9ag8eREMmu'
+    });
+    var config = {
+        method: 'post',
+        url: 'https://oauth2.googleapis.com/token',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data : data
+    };
+
+    axios(config)
+        .then(function (response) {
+            res.send(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
 
 })
 
