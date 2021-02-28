@@ -14,3 +14,7 @@ h4 {
 .leftMargin {
     margin-left:20px;
 }
+
+#logOutButton{
+    color: white; !important;
+}
