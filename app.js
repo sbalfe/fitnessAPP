@@ -11,7 +11,7 @@ const hourSlice =  require('./models/hourSlice');
 const schedule = require('node-schedule');
 const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
-const {logout, renderProfile, renderSettings} = require('./controllers/users/usermw')
+const {logout, renderProfile, renderSettings, renderAnalytics} = require('./controllers/users/usermw')
 const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn} = require('./middleware/middleware')
 
@@ -60,7 +60,6 @@ app.use(session(sessionConfig))
 
 app.get('/', catchAsync(async (req, res) => {
     if (req.session.userid){
-        console.log("yes");
         return res.redirect('/profile')
     }
     res.render('index');
@@ -77,7 +76,9 @@ app.get('/fetchSleep', fetchToken, catchAsync(sleep));
 
 app.get('/logout', catchAsync(logout));
 
-app.get('/settings', checkLoggedIn ,catchAsync(renderSettings))
+app.get('/settings', checkLoggedIn ,catchAsync(renderSettings));
+
+app.get('/analytics', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get("/profile",  checkLoggedIn , catchAsync(renderProfile));
 
@@ -96,6 +97,7 @@ app.use((err, req, res, next) => {
 /*************************** */
 
 app.listen(3000, () => {
+
 
     console.log("fitnessAPP opened on port 3000");
 

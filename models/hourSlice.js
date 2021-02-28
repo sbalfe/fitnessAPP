@@ -15,7 +15,6 @@ const hourSchema= new Schema({
         enum: ['happy', 'sad', 'angry', 'anxious','depressed','energetic']
     },
     data: Date
-
 })
 
 module.exports = mongoose.model('HourSlice', hourSchema);
