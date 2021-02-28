@@ -11,7 +11,7 @@ const hourSlice =  require('./models/hourSlice');
 const schedule = require('node-schedule');
 const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
-const {logout, renderProfile, renderSettings, renderAnalytics} = require('./controllers/users/usermw')
+const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts} = require('./controllers/users/usermw')
 const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn} = require('./middleware/middleware')
 
@@ -75,6 +75,8 @@ app.get('/fetchSteps', fetchToken, catchAsync(steps));
 app.get('/fetchSleep', fetchToken, catchAsync(sleep));
 
 app.get('/logout', catchAsync(logout));
+
+app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
 
 app.get('/settings', checkLoggedIn ,catchAsync(renderSettings));
 

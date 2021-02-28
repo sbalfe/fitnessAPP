@@ -19,3 +19,6 @@ module.exports.renderSettings = async (req, res) => {
 module.exports.renderAnalytics = async (req ,res) => {
     res.render('Analytics/analytics');
 }
+module.exports.renderContacts = async (req ,res) => {
+    res.render('Contacts/contacts');
+}
