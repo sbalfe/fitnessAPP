@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile page</title>
-    <link rel="stylesheet" href="" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
-</head>
-
-<body>
+<% layout('boilerplate/template') -%>
     <main>
-        <h1>Profile page</h1>
-        <p>Welcome to your profile <%= user.accountEmail %></p>
+        <h1>Hey There, <%=  user.accountName %></h1>
         <img src=<%= user.profilePicture%>>
          <div class="row">
              <div class="col-md-3">
@@ -25,12 +13,17 @@
              </div>
          </div>
 
-        <button onclick = "getToken()">access token</button>
     </main>
 
-         <script>
+
+<button onclick = fetchSleep()>fetch sleep </button>
+<script>
             function getToken(){
                 axios('http://localhost:3000/fetchToken').then(token => console.log(token))
+            }
+
+            function fetchSleep(){
+                axios('http://localhost:3000/fetchSleep').then(token => console.log(token))
             }
 
          </script>
@@ -44,7 +37,3 @@
              integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
              crossorigin="anonymous">
          </script>
-    </main>
-</body>
-
-</html>
