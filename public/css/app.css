@@ -1,0 +1,16 @@
+* {
+    font-family: "Josefin Sans Light"; !important;
+}
+
+.center {
+    text-align: center;
+}
+
+h4 {
+    font-family: "Josefin Sans Light";
+    font-weight: bold;
+}
+
+.leftMargin {
+    margin-left:20px;
+}
