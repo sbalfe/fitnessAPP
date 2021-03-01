@@ -1,0 +1,34 @@
+<% layout('boilerplate/template') -%>
+
+<% block('head').append('<link rel="stylesheet" type="text/css" href="/Leaderboards/leaderboard_style.css">') %>
+
+<h1>Leaderboards</h1>
+
+
+<h3>Steps</h3>
+<div class="scrollable-row row flex-nowrap">
+
+        <% for (var i = 0; i < data.length; i++) { %>
+
+        <% let trophy = (i < 3) ? "-" + (i + 1) : "" %>
+        <%let spin = (i < 3) ? "leader-pos-1" : "" %>
+
+        <div class="col-3">
+            <div class="card card-shadow-lg" style="width: 18rem;">
+
+                <img class="card-img-top <%= spin%>" src="/Leaderboards/trophy<%=trophy%>.png" alt="First Place">
+                <div class="card-body">
+                    <h4 class="card-title">Position <%= i+1 %></h5>
+                        <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><%=data[i][0]%></li>
+                    <li class="list-group-item"><%=data[i][1]%></li>
+                </ul>
+
+            </div>
+        </div>
+
+        <% } %>
+
+</div>
