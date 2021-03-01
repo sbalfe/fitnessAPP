@@ -16,7 +16,7 @@ module.exports.googleLogin =  (req, res) => {
         access_type: "offline",
         scope: scopes,
     })
-    res.redirect(url);
+    return res.redirect(url);
 }
 
 module.exports.redirect = async (req ,res) => {

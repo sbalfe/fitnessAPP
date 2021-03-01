@@ -2,7 +2,6 @@
 
     <div id = "profileDiv">
         <h1 > Hey there, <%= user.accountName %> </h1>
-
         <br>
         <br>
         <div class="center" id="cardsDiv">
@@ -26,6 +25,7 @@
                                     <h4 class= "d-inline p-2"><small id = "percentageUP">+53%</small></h4>
                                 </div>
 
+
                                 <div class = "d-block mt-5 ">
                                     <button type="button" class="btn btn-outline-dark">View more</button>
                                 </div>
@@ -46,6 +46,16 @@
                                     </svg>
                                 </div>
                                 <h5>Bed time: 9:45pm </h5>
+                                <h5>Wake Time: 9:45am </h5>
+
+
+                                 <i class="fas fa-circle parent" >
+                                    <span class = "child">
+                                        <small>
+                                            1/100
+                                        </small>
+                                    </span>
+                                 </i>
                                 <div class ="d-block">
                                     <button type="button" class="btn btn-outline-dark mt-5">View more</button>
                                 </div>
@@ -64,6 +74,27 @@
                         </div>
                     </div>
                 </div>
+
+
+                    <div class = "row mt-5 mb-5 ">
+                            <div class ="col-sm moodTag">
+                                <h4>How are you feeling right now simon?</h4>
+                                <select class="form-select moodInput" aria-label="Default select example">
+                                    <option selected>Select Mood</option>
+                                    <option value="Sad">Sad</option>
+                                    <option value="Happy">Happy</option>
+                                    <option value="Angry">Angry</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class = "col-sm mb-3 waterTag">
+                                <label for="water">Water glass count (1 cup approx 250ml)</label>
+                                <input type="number" id="water" name="tentacles">
+                            </div>
+                    </div>
+
             </div>
         </div>
 

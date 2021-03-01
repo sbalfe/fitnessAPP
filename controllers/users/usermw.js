@@ -9,6 +9,7 @@ module.exports.logout = async (req, res) => {
 
 module.exports.renderProfile = async (req,res) => {
 
+    console.log("test");
     res.render('User/profile', {user: req.user})
 }
 

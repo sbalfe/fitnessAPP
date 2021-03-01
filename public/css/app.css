@@ -22,3 +22,35 @@ h4 {
 #percentageUP{
     color:green;
 }
+
+.child{
+    position: absolute;
+    top: 42%;
+    left: 23%;
+    font-size: 20px;
+    color: black;
+
+
+}
+.parent{
+    position: relative;
+    font-size: 100px;
+    color:white;
+    border: 2px solid red;
+    border-radius: 100%;
+}
+
+.moodInput{
+
+
+    width: 25%;
+
+}
+
+.moodTag{
+    text-align: left;
+}
+
+.waterTag{
+    text-align: left;
+}
