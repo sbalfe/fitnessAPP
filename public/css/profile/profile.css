@@ -1,34 +1,88 @@
-.child{
+.center {
+    text-align: center;
+}
+
+.leftMargin {
+    margin-left:20px;
+}
+
+.child {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 35%;
+    font-size: 40%;
     color: black;
-
-
+    font-weight: lighter;
 }
+
+
 .parent{
     position: relative;
-    font-size: 100px;
+    font-size: 80px;
     color:white;
     border: 2px solid red;
     border-radius: 100%;
 }
-
-.moodInput{
-
-    width: 60%;!important;
+.stepCounter{
+    position: relative;
+    font-size: 80px;
+    color:white;
+    border: 2px solid green;
+    border-radius: 100%;
 
 }
+.test2 {
+    animation-duration: 4s;
+}
+.sleepBox{
+    box-shadow: 1px 1px 40px 1px #FF0000;!important;
+    position: relative;
+}
 
+.stepBox{
+    box-shadow: 1px 1px 40px 1px #299e42;!important;
+    position: relative;
+}
 
+.moodInput{
+    width: 60%;!important;
+}
+
+.stepsLogo{
+    width: 6%;
+}
 .moodTag{
     text-align: left;
     width: 25%;
 }
+.clock{
+    width:50%
+}
+.sleepTotalTag{
+    justify-content: start;
+    margin-top: auto;
+    margin-bottom: auto;
 
+}
+.sleepTotal{
+    display: flex;
+    justify-content: center;
 
+}
+.moon{
+    width: 12%;
+}
+.sleepTimes{
+    display: inline-block;
+}
+.percentage{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5% auto auto;
+}
 
 .waterTag{
     display: block;
@@ -45,5 +99,18 @@ div label small{
 #water{
     display: block;
     margin: auto;
+
+}
+.percentageUP{
+    color: green;
+}
+
+.qualityTag {
+    margin-top: 5%;
+}
+.date {
+    display: inline-block;
+    background-color: beige;
+    margin-bottom: 20px;
 
 }
