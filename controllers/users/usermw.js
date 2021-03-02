@@ -30,3 +30,9 @@ module.exports.renderRanking = async (req ,res) => {
 
     res.render('Leaderboards/leaderboards', {data:test_data});
 }
+
+module.exports.renderGoals = async (req ,res) => {
+
+    let data = {}
+    res.render("Goals/goals", {data});
+}

@@ -10,55 +10,94 @@
                 <div class="row">
                     <div class="col-sm">
                         <div class="card shadow-lg mb-3 border-success" style="width: 90%;">
-                            <div class="card-body display-relative">
+                            <div class="card-body display-relative stepBox">
                                 <h3 class="card-title"> <strong>Steps Overview</strong></h3>
                                 <hr>
-                                <br>
-                                <div class = "d-inline ">
-                                    <h4 class= "d-inline p-2">Steps today: <small>5902</small></h4>
+                                <div class = "mb-2">
+                                    <img src = "/css/profile/images/steps.svg" class = "stepsLogo">
                                 </div>
-                                <div class = "d-inline " >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"  style="color:green" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
-                                    </svg>
+                                <div>
+                                    <i class="fas fa-circle stepCounter" >
+                                        <span class = "child">
+                                            <small>
+                                                8935023
+                                            </small>
+                                        </span>
+                                    </i>
                                 </div>
-                                <div class = "d-inline ">
-                                    <h4 class= "d-inline p-2"><small id = "percentageUP">+53%</small></h4>
+                                <div class = "percentage">
+                                    <div class = "d-inline " >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-up-right percentageUP" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                                        </svg>
+                                    </div>
+                                    <div class = "d-inline ">
+                                        <h4 class= "d-inline p-2"><small >+65%</small></h4>
+                                    </div>
                                 </div>
 
+                                <h4 class = "qualityTag">Step Count</h4>
 
-                                <div class = "d-block mt-5 ">
-                                    <button type="button" class="btn btn-outline-dark">View more</button>
+                                <div class =" d-flex flex-column justify-content-center">
+                                    <button type="button" class="btn btn-outline-dark mt-auto mb-auto ">View more</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm">
-                        <div class="card shadow-lg mb-3 border-danger" style="width: 90%;">
-                            <div class="card-body">
+                        <div class="card shadow-lg mb-3 " style="width: 90%;">
+                            <div class="card-body sleepBox">
                                 <h3 class="card-title"><strong>Sleep Overview</strong></h3>
                                 <hr>
-
-                                <h5><strong>Date: 23rd february 2021</strong></h5>
-                                <div class = "mb-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-                                        <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
-                                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-                                    </svg>
+                                <div class = "sleepTotal mb-3">
+                                    <div class = " d-inline">
+                                        <img class = "d-inline clock" src= "/css/profile/images/clock.svg">
+                                    </div>
+                                    <h4 class = "d-inline sleepTotalTag">12 hours</h4>
                                 </div>
-                                <h5>Bed time: 9:45pm </h5>
-                                <h5>Wake Time: 9:45am </h5>
+
+                                <div>
+                                     <i class="fas fa-circle parent" >
+                                        <span class = "child">
+                                            <small>
+                                                57
+                                            </small>
+                                        </span>
+                                     </i>
+                                </div>
+                                <div class = "percentage">
+                                    <div class = "d-inline " >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-down-left percentageDOWN" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M2 13.5a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 0-1H3.707L13.854 2.854a.5.5 0 0 0-.708-.708L3 12.293V7.5a.5.5 0 0 0-1 0v6z"/>
+                                        </svg>
+                                    </div>
+                                    <div class = "d-inline ">
+                                        <h4 class= "d-inline p-2"><small >-23%</small></h4>
+                                    </div>
+                                </div>
+
+                                <h4 class = "qualityTag">Sleep Quality</h4>
+
+                                <div class = "sleep">
+                                    <div class = "d-inline " >
+                                        <img class = "d-inline moon" src= "/css/profile/images/moon.svg">
+                                    </div>
+                                    <div class = "d-inline ">
+                                        <h5 class = "d-inline d-flex flex-column justify-content-start">9:45pm </h5>
+                                    </div>
+                                </div>
+                                <div class = "wake">
+                                    <div class = "d-inline " >
+                                        <img class = "d-inline moon" src= "/css/profile/images/sun.svg">
+                                    </div>
+                                    <div class = "d-inline ">
+                                        <h5 class = "d-inline d-flex flex-column justify-content-start">9:45am </h5>
+                                    </div>
+                                </div>
 
 
-                                 <i class="fas fa-circle parent" >
-                                    <span class = "child">
-                                        <small class=>
-                                            10
-                                        </small>
-                                    </span>
-                                 </i>
-                                <div class ="d-block">
-                                    <button type="button" class="btn btn-outline-dark mt-5">View more</button>
+                                <div class =" d-flex flex-column justify-content-center">
+                                    <button type="button" class="btn btn-outline-dark mt-auto mb-auto ">View more</button>
                                 </div>
 
                             </div>
@@ -69,7 +108,8 @@
                             <div class="card-body">
                                 <h3 class="card-title"><strong>Heart Rate Overview</strong></h3>
                                 <hr>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                                <div class = "d-flex flex-column justify-content-center">
                                 <button type="button" class="btn btn-outline-dark">View more</button>
                             </div>
                         </div>
