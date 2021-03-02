@@ -19,22 +19,3 @@ const hourSchema= new Schema({
 
 module.exports = mongoose.model('HourSlice', hourSchema);
 
-hourSlice =  {
-    steps: 450,
-    sleepStage: 5,
-    Mood: {
-        type: 'Anger',
-        state: 1,
-    }
-}
-
-
-hourSlice = {
-    user: {
-        uid: 4985905,
-        steps: 450,
-    },
-    user :{
-
-    }
-}

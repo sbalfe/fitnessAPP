@@ -43,8 +43,7 @@ module.exports.checkLoggedIn = async (req ,res, next) => {
         next();
     }
     else{
-        res.redirect('/');
-        next();
+        return res.redirect('/');
 
     }
 }

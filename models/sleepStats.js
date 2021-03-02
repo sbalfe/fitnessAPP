@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const hourSchema= new Schema({
+const sleepSchema= new Schema({
     _id: String,
     user: {
         type: String,
@@ -12,5 +12,5 @@ const hourSchema= new Schema({
     quality: Number,
 })
 
-module.exports = mongoose.model('HourSlice', hourSchema);
+module.exports = mongoose.model('SleepStat', sleepSchema);
 

@@ -2,17 +2,9 @@
     font-family: 'Josefin Sans', sans-serif; !important;
 }
 
-.center {
-    text-align: center;
-}
-
 h4 {
     font-family: 'Josefin Sans', sans-serif; !important;
     font-weight: bold;
-}
-
-.leftMargin {
-    margin-left:20px;
 }
 
 #googleLogOut{
@@ -23,34 +15,3 @@ h4 {
     color:green;
 }
 
-.child{
-    position: absolute;
-    top: 42%;
-    left: 23%;
-    font-size: 20px;
-    color: black;
-
-
-}
-.parent{
-    position: relative;
-    font-size: 100px;
-    color:white;
-    border: 2px solid red;
-    border-radius: 100%;
-}
-
-.moodInput{
-
-
-    width: 25%;
-
-}
-
-.moodTag{
-    text-align: left;
-}
-
-.waterTag{
-    text-align: left;
-}

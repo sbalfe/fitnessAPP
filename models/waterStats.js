@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const hourSchema= new Schema({
+const waterSchema= new Schema({
     _id: String,
     user: {
         type: String,
@@ -11,5 +11,5 @@ const hourSchema= new Schema({
     date: Date,
 })
 
-module.exports = mongoose.model('HourSlice', hourSchema);
+module.exports = mongoose.model('HourSlice', waterSchema);
 

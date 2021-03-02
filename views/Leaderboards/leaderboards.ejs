@@ -1,6 +1,6 @@
 <% layout('boilerplate/template') -%>
 
-<% block('head').append('<link rel="stylesheet" type="text/css" href="/Leaderboards/leaderboard_style.css">') %>
+<% block('head').append('<link rel="stylesheet" type="text/css" href="/css/leaderboards/leaderboard_style.css">') %>
 
 <h1>Leaderboards</h1>
 
@@ -16,7 +16,7 @@
         <div class="col-3">
             <div class="card card-shadow-lg" style="width: 18rem;">
 
-                <img class="card-img-top <%= spin%>" src="/Leaderboards/trophy<%=trophy%>.png" alt="First Place">
+                <img class="card-img-top <%= spin%>" src="/css/leaderboards/trophy<%=trophy%>.png" alt="First Place">
                 <div class="card-body">
                     <h4 class="card-title">Position <%= i+1 %></h5>
                         <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
