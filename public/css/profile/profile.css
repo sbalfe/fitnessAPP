@@ -41,6 +41,25 @@
     width: 60%;!important;
 }
 
+.medium{
+    color: #fc9403;
+    transform: rotate(45deg);
+}
+.heartBox{
+    box-shadow: 1px 1px 40px 1px #fc9403;!important;
+    position: relative;
+
+}
+
+.child2{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30%;
+    color: black;
+    font-weight: lighter;
+}
 .stepsLogo{
     width: 6%;
 }
@@ -56,6 +75,10 @@
     margin-top: auto;
     margin-bottom: auto;
 
+}
+.space{
+    color:white;
+    padding: 25%;
 }
 .sleepTotal{
     display: flex;
@@ -75,13 +98,23 @@
     justify-content: center;
     margin: 5% auto auto;
 }
-
+.heartLogo{
+    width: 10%;
+}
 .waterTag{
     display: block;
     text-align: left;
     font-size: 150%;
     font-weight:bold;
     margin-bottom: 10%;
+}
+
+.heartCounter{
+    position: relative;
+    font-size: 80px;
+    color:white;
+    border: 2px solid #fc9403;
+    border-radius: 100%;
 }
 
 div label small{
@@ -100,6 +133,8 @@ div label small{
 .qualityTag {
     margin-top: 5%;
 }
+
+
 .date {
     display: inline-block;
     background-color: beige;

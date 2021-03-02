@@ -47,7 +47,7 @@ app.use(express.static('public'));
 
 /* ~~~~~~ Session ~~~~~~ */
 const sessionConfig = {
-    name: 'Simons Cookie',
+    name: 'Efe Cookie',
     secret: 'EHNkq4hTuqouhx9ag8eREMmu',
     resave: true,
     saveUninitialized: true,
