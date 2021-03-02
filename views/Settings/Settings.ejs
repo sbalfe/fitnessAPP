@@ -1,68 +1,70 @@
 <% layout('boilerplate/template') -%>
 
-    <div id = "settingsDiv">
-        <h2 class="center"> <strong> Settings </strong></h2>
-        <br>
-        <label> Username: </label>
-        <div class="input-group mb-3">
-            <input type = "text" class = "form-control" placeholder = "username" aria-label = "username">
-            <button class="btn btn-outline-secondary" type="button" id = "usernameButton"> Submit </button>
-        </div>
-        <label> Change profile picture: </label>
-        <div class="input-group">
-            <input type="file" class="form-control" id="chooseFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-            <button class="btn btn-outline-secondary" type="button" id="fileUploadButton"> Upload </button>
-        </div>
-        <br>
-        <hr>
+<% block('settingsCSS').append('<link rel="stylesheet" type="text/css" href="/css/settings/settings.css">') %>
 
-        <div id = "notificationDiv">
-            <h4> Notifications: </h4>
-            <div class="leftMargin">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type = "checkbox" id ="emailSwitch">
-                    <label class="form-check-label" for = "emailSwitch"> Email </label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type = "checkbox" id = "pushSwitch">
-                    <label class="form-check-label" for = "pushSwitch"> Push notifications</label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type = "checkbox" id="smsSwitch">
-                    <label class="form-check-label" for = "smsSwitch"> SMS </label>
-                </div>
+<div id = "settingsDiv">
+    <h2 class="center"><strong> Settings </strong></h2>
+    <br>
+    <label> Username: </label>
+    <div class="input-group mb-3">
+        <input type = "text" class = "form-control" placeholder = "username" aria-label = "username">
+        <button class="btn btn-outline-secondary" type="button" id = "usernameButton"> Submit </button>
+    </div>
+    <label> Change profile picture: </label>
+    <div class="input-group">
+        <input type="file" class="form-control" id="chooseFile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        <button class="btn btn-outline-secondary" type="button" id="fileUploadButton"> Upload </button>
+    </div>
+    <br>
+    <hr>
+
+    <div id = "notificationDiv">
+        <h4> Notifications: </h4>
+        <div class="leftMargin">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type = "checkbox" id ="emailSwitch">
+                <label class="form-check-label" for = "emailSwitch"> Email </label>
             </div>
-        </div>
-        <br>
-        <hr>
-        <div id = "privacyDiv">
-            <h4> Privacy: </h4>
-            <div class="leftMargin">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type = "checkbox" id ="rankedButton">
-                    <label class="form-check-label" for = "rankedButton"> Ranked </label>
-                </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type = "checkbox" id = "logOutButton">
-                    <label class="form-check-label" for = "logOutButton"> Log out on exit </label>
-                </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type = "checkbox" id = "pushSwitch">
+                <label class="form-check-label" for = "pushSwitch"> Push notifications</label>
             </div>
-        </div>
-        <br>
-        <hr>
-        <div id = "fitnessRankSelect">
-            <h4> Tier of fitness: </h4>
-            <div class="leftMargin">
-                <label>
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected> select </option>
-                        <option value="1"> low </option>
-                        <option value="2"> moderate </option>
-                        <option value="3"> high </option>
-                    </select>
-                </label>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type = "checkbox" id="smsSwitch">
+                <label class="form-check-label" for = "smsSwitch"> SMS </label>
             </div>
         </div>
     </div>
+    <br>
+    <hr>
+    <div id = "privacyDiv">
+        <h4> Privacy: </h4>
+        <div class="leftMargin">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type = "checkbox" id ="rankedButton">
+                <label class="form-check-label" for = "rankedButton"> Ranked </label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type = "checkbox" id = "logOutButton">
+                <label class="form-check-label" for = "logOutButton"> Log out on exit </label>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div id = "fitnessRankSelect">
+        <h4> Tier of fitness: </h4>
+        <div class="leftMargin">
+            <label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected> select </option>
+                    <option value="1"> low </option>
+                    <option value="2"> moderate </option>
+                    <option value="3"> high </option>
+                </select>
+            </label>
+        </div>
+    </div>
+</div>
 
 
