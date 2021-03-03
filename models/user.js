@@ -7,6 +7,62 @@ const userSchema = new Schema({
     accountEmail: String,
     profilePicture: String,
     refreshToken: String,
+    ranking: {
+        stepRanking: Number,
+        sleepRanking: Number,
+        waterRanking: Number,
+    },
+    hourSlice: [{
+        name: String,
+        sleepValue: Number,
+        stepsValue: Number,
+        mood: {
+            type: Number,
+            enum: [1, 2, 3, 4,5,6]
+        },
+        averageBPM: Number,
+        date: Date,
+        hour: Number,
+    }],
+    statistics: {
+        sleep: [{
+            sleep: Date,
+            wake: Date,
+            quality: Number,
+        }],
+        hydration: [{
+            volume: Number,
+            date: Date,
+
+        }],
+        steps: [{
+            count: Number,
+            date: Date,
+        }],
+        heartRate: [{
+            averageBPM : Number,
+            restingBPM: Number,
+            high: Number,
+            low: Number,
+            date: Date,
+        }],
+    },
+    settings: {
+        fitnessLevel: {
+            type: String,
+            enum : ['averageUser', 'advancedUser']
+        },
+        privacy: Boolean,
+        notification:{
+            type: String,
+            enum: ['email', 'pushNotification','phoneNumber']
+        }
+    },
+    modelNotifications: [{
+        message: String,
+        date: Date,
+    }],
+
 })
 
 module.exports = mongoose.model('User', userSchema);

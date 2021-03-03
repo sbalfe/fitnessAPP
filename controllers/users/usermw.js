@@ -9,16 +9,15 @@ module.exports.logout = async (req, res) => {
 
 module.exports.renderProfile = async (req,res) => {
 
-    console.log("test");
     res.render('User/profile', {user: req.user})
 }
 
 module.exports.renderSettings = async (req, res) => {
-    res.render('Settings/Settings', {user: req.user});
+    res.render('User/Settings', {user: req.user});
 }
 
 module.exports.renderAnalytics = async (req ,res) => {
-    res.render('Analytics/analytics');
+    res.render('User/analytics');
 }
 module.exports.renderContacts = async (req ,res) => {
     res.render('Contacts/contacts');
@@ -34,5 +33,5 @@ module.exports.renderRanking = async (req ,res) => {
 module.exports.renderGoals = async (req ,res) => {
 
     let data = {}
-    res.render("Goals/goals", {data});
+    res.render("User/goals", {data});
 }

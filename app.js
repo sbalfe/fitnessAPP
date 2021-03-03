@@ -7,7 +7,6 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const ExpressError= require('./utils/ExpressError')
 const User = require('./models/user');
-const hourSlice =  require('./models/hourSlice');
 const schedule = require('node-schedule');
 const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
@@ -92,6 +91,8 @@ app.get("*", (req, res, next) => {
 
     next(new ExpressError('page not found', 404));
 })
+
+
 
 /*********** ERROR HANDLING ********/
 app.use((err, req, res, next) => {
