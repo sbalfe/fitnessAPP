@@ -13,6 +13,7 @@ const {googleLogin, redirect} = require('./controllers/auth/oauth')
 const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts, renderRanking, renderGoals} = require('./controllers/users/usermw')
 const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn} = require('./middleware/middleware')
+const queryRoutes = require('./routes/query/query');
 
 /********** MONGO DB CONNECTION ***********/
 mongoose.connect('mongodb://localhost:27017/fitnessDB', {
@@ -33,7 +34,7 @@ const app = express();
 app.engine('ejs', ejsMate)
 
 /* ~~~~~~  Configurations ~~~~~~~~~~~~~~~~~~~~~~~~ */
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.set('public', path.join(__dirname, '/public'));
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -57,12 +58,15 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* ~~~~~~~~~Main Route middleware ~~~~~~~~ */
+app.use('/query', queryRoutes);
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 app.get('/', catchAsync(async (req, res) => {
     if (req.session.userid){
-        return res.redirect('/profile')
+        return res.redirect('/profile');
     }
     res.render('index');
-
 }))
 
 app.get('/oauth', googleLogin);

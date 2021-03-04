@@ -7,6 +7,7 @@ const userSchema = new Schema({
     accountEmail: String,
     profilePicture: String,
     refreshToken: String,
+    username: String,
     ranking: {
         stepRanking: Number,
         sleepRanking: Number,
@@ -26,6 +27,7 @@ const userSchema = new Schema({
     }],
     statistics: {
         sleep: [{
+            date: Number,
             sleep: Date,
             wake: Date,
             quality: Number,
@@ -50,10 +52,10 @@ const userSchema = new Schema({
     settings: {
         fitnessLevel: {
             type: String,
-            enum : ['averageUser', 'advancedUser']
+            enum : ['low', 'moderate', 'high']
         },
         privacy: Boolean,
-        notification:{
+        notifications:{
             type: String,
             enum: ['email', 'pushNotification','phoneNumber']
         }

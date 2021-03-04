@@ -39,7 +39,12 @@ module.exports.redirect = async (req ,res) => {
             accountName: payload.name,
             accountEmail: payload.email,
             profilePicture: payload.picture,
-            refreshToken
+            refreshToken,
+            statistics: {
+                sleep: [
+                    {date: 10, quality: 10}
+                ]
+            }
         }
 
         const user = await new User(userOptions);
