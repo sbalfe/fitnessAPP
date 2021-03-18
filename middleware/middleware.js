@@ -1,10 +1,10 @@
 const axios = require('axios');
 var qs = require('qs');
 const User = require('../models/user');
+const db = require('../db');
 
 module.exports.fetchToken = async (req ,res ,next) => {
     if (!req.session.userid){
-
         return res.redirect('/')
         next();
     }
@@ -38,15 +38,46 @@ module.exports.fetchToken = async (req ,res ,next) => {
 
 module.exports.checkLoggedIn = async (req ,res, next) => {
     if(req.session.userid){
-        const user = await User.findById(req.session.userid)
-        req.user = user;
+        const user = await db.query("SELECT * FROM users WHERE userid = $1",[req.session.userid]);
+        req.user = user["rows"][0];
         next();
     }
     else{
         return res.redirect('/');
-
     }
 }
+
+module.exports.buildProfile = async (req, res, next) => {
+
+    const steps = await db.query("SELECT date, stepcount ,volume, sleepquality, bedtime, waketime, averagebpm, high, low " +
+        "FROM dailyuserdata INNER JOIN hydration ON hyd = hydrationid " +
+        "INNER JOIN steps ON step=stepsid " +
+        "INNER JOIN sleep ON slee = sleepid " +
+        "INNER JOIN heartrate ON heart = heartrateid " +
+        "INNER JOIN dates ON dailyuserdata.unixid=dates.unixid; ");
+
+    const fetch = steps["rows"][0];
+
+    const {date} = fetch;
+
+    const standardDate = new Date(1615655846163);
+
+    req.data = {
+        fetch,
+        date: standardDate,
+    }
+    console.log(req.data);
+    next();
+
+}
+
+module.exports.buildSettings = async(req , res, next) => {
+
+    next();
+
+}
+
+
 
 
 

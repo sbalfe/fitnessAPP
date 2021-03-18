@@ -12,23 +12,9 @@ const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
 const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts, renderRanking, renderGoals} = require('./controllers/users/usermw')
 const {steps, sleep} = require('./controllers/API/googleFit')
-const {fetchToken, checkLoggedIn} = require('./middleware/middleware')
+const {fetchToken, checkLoggedIn , buildProfile, buildSettings} = require('./middleware/middleware')
 const queryRoutes = require('./routes/query/query');
-
-/********** MONGO DB CONNECTION ***********/
-mongoose.connect('mongodb://localhost:27017/fitnessDB', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false /* deprecated therefore force set to false */
-})
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error"));
-db.once("open", () => {
-    console.log("Database Connected");
-})
-/******************************************/
+const db = require('./db');
 
 const app = express();
 app.engine('ejs', ejsMate)
@@ -60,6 +46,7 @@ app.use(session(sessionConfig))
 
 /* ~~~~~~~~~Main Route middleware ~~~~~~~~ */
 app.use('/query', queryRoutes);
+app.use('/graph', graphRoutes);
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 app.get('/', catchAsync(async (req, res) => {
@@ -81,22 +68,19 @@ app.get('/logout', catchAsync(logout));
 
 app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
 
-app.get('/settings', checkLoggedIn ,catchAsync(renderSettings));
+app.get('/settings', checkLoggedIn , buildSettings, catchAsync(renderSettings));
 
 app.get('/analytics', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get('/ranking', checkLoggedIn, catchAsync(renderRanking));
 
-app.get("/profile",  checkLoggedIn , catchAsync(renderProfile));
+app.get("/profile",  checkLoggedIn , buildProfile , catchAsync(renderProfile));
 
 app.get("/goals", checkLoggedIn, catchAsync(renderGoals));
 
 app.get("*", (req, res, next) => {
-
     next(new ExpressError('page not found', 404));
 })
-
-
 
 /*********** ERROR HANDLING ********/
 app.use((err, req, res, next) => {
@@ -105,14 +89,10 @@ app.use((err, req, res, next) => {
     console.log(err.message);
     res.status(statusCode).render('error', {err})
 })
-
 /*************************** */
 
 app.listen(3000, () => {
-
-
     console.log("fitnessAPP opened on port 3000");
-
 })
 
 

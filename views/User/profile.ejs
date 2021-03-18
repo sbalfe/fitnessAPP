@@ -2,7 +2,7 @@
 
 <% block('profile').append('<link rel="stylesheet" type="text/css" href="/css/profile/profile.css">') %>
     <div id = "profileDiv">
-        <h1 > Hey there, <%= user.accountName %> </h1>
+        <h1 > Hey there, <%= user.accountname %> </h1>
         <br>
         <br>
         <div class="center" id="cardsDiv">
@@ -20,7 +20,7 @@
                                     <i class="fas fa-circle stepCounter" >
                                         <span class = "child2">
                                             <small>
-                                                8935023
+                                                <%= data.steps.count %>
                                             </small>
                                         </span>
                                     </i>
@@ -32,7 +32,7 @@
                                         </svg>
                                     </div>
                                     <div class = "d-inline ">
-                                        <h4 class= "d-inline p-2"><small >+65%</small></h4>
+                                        <h4 class= "d-inline p-2"><small > <%= data.steps.change %></small></h4>
                                     </div>
                                 </div>
 
@@ -55,14 +55,14 @@
                                     <div class = " d-inline">
                                         <img class = "d-inline clock" src= "/css/profile/images/clock.svg">
                                     </div>
-                                    <h4 class = "d-inline sleepTotalTag">12 hours</h4>
+                                    <h4 class = "d-inline sleepTotalTag"> <%= data.sleep.hours %></h4>
                                 </div>
 
                                 <div>
                                      <i class="fas fa-circle parent" >
                                         <span class = "child">
                                             <small>
-                                                57
+                                                <%= data.sleep.quality %>
                                             </small>
                                         </span>
                                      </i>
@@ -74,7 +74,7 @@
                                         </svg>
                                     </div>
                                     <div class = "d-inline ">
-                                        <h4 class= "d-inline p-2"><small >-23%</small></h4>
+                                        <h4 class= "d-inline p-2"><small > <%= data.sleep.change %></small></h4>
                                     </div>
                                 </div>
 
@@ -85,7 +85,7 @@
                                         <img class = "d-inline moon" src= "/css/profile/images/moon.svg">
                                     </div>
                                     <div class = "d-inline ">
-                                        <h5 class = "d-inline d-flex flex-column justify-content-start">9:45pm </h5>
+                                        <h5 class = "d-inline d-flex flex-column justify-content-start"> <%= data.sleep.bedTime %> </h5>
                                     </div>
                                 </div>
                                 <div class = "wake">
@@ -93,7 +93,7 @@
                                         <img class = "d-inline moon" src= "/css/profile/images/sun.svg">
                                     </div>
                                     <div class = "d-inline ">
-                                        <h5 class = "d-inline d-flex flex-column justify-content-start">9:45am </h5>
+                                        <h5 class = "d-inline d-flex flex-column justify-content-start"><%= data.sleep.wakeTime %></h5>
                                     </div>
                                 </div>
 
@@ -117,7 +117,7 @@
                                     <i class="fas fa-circle heartCounter" >
                                         <span class = "child2">
                                             <small>
-                                                65bpm
+                                                <%= data.heartRate.value %>
                                             </small>
                                         </span>
                                     </i>
@@ -130,7 +130,7 @@
                                         </svg>
                                     </div>
                                     <div class = "d-inline ">
-                                        <h4 class= "d-inline p-2"><small >+5%</small></h4>
+                                        <h4 class= "d-inline p-2"><small > <%= data.heartRate.change %></small></h4>
                                     </div>
                                 </div>
 
@@ -172,3 +172,4 @@
         </div>
 
     </div>
+

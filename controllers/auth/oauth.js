@@ -2,6 +2,7 @@ const {google} = require('googleapis');
 const queryParse = require("query-string");
 const urlParse = require("url-parse");
 const User = require('../../models/user');
+const db = require('../../db');
 
 const oauth2Client = new google.auth.OAuth2(
     "739982117038-d6epg8e60f9vkq2dp4fn73tgfrfdn1uo.apps.googleusercontent.com",
@@ -31,24 +32,12 @@ module.exports.redirect = async (req ,res) => {
 
     const payload = ticket.getPayload();
     const userid = payload['sub'];
-    const user = await User.findById(userid);
-
-    if(!user){
-        const userOptions ={
-            _id: userid,
-            accountName: payload.name,
-            accountEmail: payload.email,
-            profilePicture: payload.picture,
-            refreshToken,
-            statistics: {
-                sleep: [
-                    {date: 10, quality: 10}
-                ]
-            }
-        }
-
-        const user = await new User(userOptions);
-        await user.save();
+    const user = await db.query("SELECT userid FROM users WHERE userid = $1", [userid])
+    if(!user["rows"][0]){
+        const newUser = await db.query(
+            "INSERT INTO users (userid, accountName ,accountEmail,profilePicture, refreshToken) VALUES ($1,$2,$3,$4,$5)",
+            [userid, payload.name, payload.email,payload.picture, refreshToken]
+        );
     }
     req.session.userid = userid;
     res.redirect('/profile');

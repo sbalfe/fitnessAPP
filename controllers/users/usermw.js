@@ -8,8 +8,26 @@ module.exports.logout = async (req, res) => {
 }
 
 module.exports.renderProfile = async (req,res) => {
-
-    res.render('User/profile', {user: req.user})
+    let data =  {
+        sleep: {
+            hours: 12,
+            bedTime: "9:30pm",
+            wakeTime: "9:30am",
+            quality: 76,
+            change: -27
+        },
+        steps: {
+            count: 10506,
+            change: '+65%',
+        },
+        heartRate:{
+            value: 54,
+            change: '+5%'
+        },
+        glasses: 4,
+        mood: 'sad',
+    }
+    res.render('User/profile', {user: req.user, data})
 }
 
 module.exports.renderSettings = async (req, res) => {
