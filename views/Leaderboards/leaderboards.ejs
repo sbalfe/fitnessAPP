@@ -12,6 +12,7 @@
         <% for (var i = 0; i < data.length; i++) { %>
 
         <% let trophy = (i < 3) ? "-" + (i + 1) : "" %>
+        <%# Make the trophy spin (by giving it the leader-pos-1 class) only if it is one of the top 3 entries%>
         <%let spin = (i < 3) ? "leader-pos-1" : "" %>
 
         <div class="col-3">

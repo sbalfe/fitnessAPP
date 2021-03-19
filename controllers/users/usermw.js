@@ -17,8 +17,26 @@ module.exports.renderSettings = async (req, res) => {
 }
 
 module.exports.renderAnalytics = async (req ,res) => {
-    res.render('User/analytics');
+    let requested_graph = req.params.path;
+
+    if (requested_graph == "sleep")
+    {
+        //return the sleep graph
+    }
+    else if (requested_graph = "hr")
+    {
+        //hr graph
+    }
+    else
+    {
+        res.render('Analytics/analytics', {graph:"steps"});
+    }
+
+    res.render('Analytics/analytics', {graph:"steps"});
 }
+
+
+
 module.exports.renderContacts = async (req ,res) => {
     res.render('Contacts/contacts');
 }

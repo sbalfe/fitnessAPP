@@ -10,7 +10,7 @@ const User = require('./models/user');
 const schedule = require('node-schedule');
 const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
-const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts, renderRanking, renderGoals} = require('./controllers/users/usermw')
+const {logout, renderProfile, renderSettings, renderAnalytics, renderAnalyticsComponent, renderContacts, renderRanking, renderGoals} = require('./controllers/users/usermw')
 const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn} = require('./middleware/middleware')
 const queryRoutes = require('./routes/query/query');
@@ -84,6 +84,8 @@ app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
 app.get('/settings', checkLoggedIn ,catchAsync(renderSettings));
 
 app.get('/analytics', checkLoggedIn, catchAsync(renderAnalytics));
+
+app.get('/analytics/:path', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get('/ranking', checkLoggedIn, catchAsync(renderRanking));
 

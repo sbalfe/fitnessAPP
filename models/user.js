@@ -8,7 +8,8 @@ const userSchema = new Schema({
     profilePicture: String,
     refreshToken: String,
     username: String,
-    ranking: {
+    ranking:
+    {
         stepRanking: Number,
         sleepRanking: Number,
         waterRanking: Number,
