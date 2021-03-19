@@ -1,0 +1,44 @@
+<div class="d-flex flex-column align-items-center w-25 m-3">
+    <label id="timeScaleRangeDescription" for="Time Scale" >Default</label>
+    <input type="range" class="" id="timeScaleRange" min="0" max="2" oninput="onInput()">
+</div>
+
+<div id="DailyReference" style="display:none">
+    <label for="timeOfDayRef">
+        Find Specific Time:
+    </label>
+    <input type="time" id="timeOfDayRef">
+</div>
+
+<div id="WeeklyReference" style="display:none">
+    <label for="weekRef">
+        Find Specific Week:
+    </label>
+    <input type="week" id="weekRef">
+</div>
+
+<div id="MonthlyReference" style="display:none">
+    <label for="monthRef">
+        Find Specific Month:
+    </label>
+    <input type="month" id="monthRef">
+</div>
+
+<script>
+    let timeScaleMarkers = ["Daily", "Weekly", "Monthly"];
+    document.getElementById("timeScaleRange").max = timeScaleMarkers.length - 1;
+    let selectedTimeRangePrev = "Daily";
+    function onInput()
+    {
+        let selectedIndex = document.getElementById("timeScaleRange").value;
+        let selectedTimeRange = timeScaleMarkers[selectedIndex];
+
+        document.getElementById("timeScaleRangeDescription").innerHTML = selectedTimeRange;
+        console.log(selectedTimeRange + "Reference");
+        document.getElementById(selectedTimeRangePrev + "Reference").style.display = "none";
+        document.getElementById(selectedTimeRange + "Reference").style.display = "block";
+        makeChart(selectedTimeRange);
+        selectedTimeRangePrev = selectedTimeRange; // used to hide the previous reference selection field
+    }
+    onInput();
+</script>

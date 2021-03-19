@@ -1,0 +1,22 @@
+<div class="d-flex flex-column align-items-center w-25 m-3">
+    <label id="timeScaleRangeDescription" for="Time Scale" >Default</label>
+    <input type="range" class="" id="timeScaleRange" oninput="onInput()">
+</div>
+
+<script>
+    function onInput()
+    {
+        let timeScaleMarkers = ["Hourly","Daily", "Weekly", "Monthly"];
+        let percentageFilled = document.getElementById("timeScaleRange").value;
+
+        for (let i = 0; i < timeScaleMarkers.length; i++)
+        {
+            if (percentageFilled >= (100 / timeScaleMarkers.length) * i)
+            {
+                document.getElementById("timeScaleRangeDescription").innerHTML = timeScaleMarkers[i];
+            }
+        }
+        makeChart(timeScaleMarkers[i]);
+    }
+    onInput();
+</script>
