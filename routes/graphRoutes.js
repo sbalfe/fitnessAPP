@@ -6,18 +6,11 @@ const {stepsData} = require('../middleware/middleware')
 router.use(express.urlencoded({extended: true}));
 router.use(bodyParser.json());
 
-router.get('/steps', stepsData ,(req , res) => {
+router.post('/steps', (req, res) => {
 
-    res.render('steps');
-
-})
-
-router.post('/steps', (req , res) =>{
-
-
+    res.se
 
 })
-
 
 
 module.exports = router;

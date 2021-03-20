@@ -6,7 +6,6 @@ const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const ExpressError= require('./utils/ExpressError')
-const User = require('./models/user');
 const schedule = require('node-schedule');
 const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
@@ -15,7 +14,6 @@ const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn , buildProfile, buildSettings} = require('./middleware/middleware')
 const queryRoutes = require('./routes/query/query');
 const graphRoutes = require('./routes/graphRoutes')
-const db = require('./db');
 const app = express();
 app.engine('ejs', ejsMate)
 

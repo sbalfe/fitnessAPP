@@ -34,6 +34,13 @@
             // The day chosen, will have to get this from an input.
             dataPeriodValue = 'DD/MM/YYYY';
             // Get the data for the number of steps for that day.
+            axios({
+                method: 'post',
+                url: 'https://localhost:3000/graph/steps',
+                data: {
+                    bucket: 'hour'
+                }
+            }).then(data => console.log(data))
             stepsData = [0, 0, 0, 0, 0, 0, 0, 22, 102, 231, 97, 76, 467, 234, 113, 61, 104, 216, 45, 56, 34, 26, 0, 0];
             // The hours of the day.
             xAxisValues = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
