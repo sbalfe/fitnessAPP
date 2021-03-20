@@ -1,6 +1,5 @@
 const axios = require('axios');
 var qs = require('qs');
-const User = require('../models/user');
 const db = require('../db');
 
 module.exports.fetchToken = async (req ,res ,next) => {

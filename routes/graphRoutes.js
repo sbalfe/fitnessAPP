@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 
 router.post('/steps', (req, res) => {
 
-    res.se
+    res.json({data: 'data'})
 
 })
 

@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+
 
 module.exports.logout = async (req, res) => {
 
@@ -37,20 +37,20 @@ module.exports.renderSettings = async (req, res) => {
 module.exports.renderAnalytics = async (req ,res) => {
     let requested_graph = req.params.path;
 
-    if (requested_graph === "sleep")
+    if (requested_graph === "Sleep")
     {
         //return the sleep graph
     }
-    else if (requested_graph === "hr")
+    else if (requested_graph === "HeartRate")
     {
-        //hr graph
+        res.render('Analytics/analytics', {graph:"heart"})
     }
     else
     {
         res.render('Analytics/analytics', {graph:"steps"});
     }
 
-    res.render('Analytics/analytics', {graph:"steps"});
+    //res.render('Analytics/analytics', {graph:"steps"});
 }
 module.exports.renderContacts = async (req ,res) => {
     res.render('Contacts/contacts');

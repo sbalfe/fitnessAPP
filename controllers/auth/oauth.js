@@ -1,7 +1,6 @@
 const {google} = require('googleapis');
 const queryParse = require("query-string");
 const urlParse = require("url-parse");
-const User = require('../../models/user');
 const db = require('../../db');
 
 const oauth2Client = new google.auth.OAuth2(

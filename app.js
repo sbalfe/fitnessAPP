@@ -69,8 +69,6 @@ app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
 
 app.get('/settings', checkLoggedIn , buildSettings, catchAsync(renderSettings));
 
-app.get('/analytics', checkLoggedIn, catchAsync(renderAnalytics));
-
 app.get('/analytics/:path', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get('/ranking', checkLoggedIn, catchAsync(renderRanking));
