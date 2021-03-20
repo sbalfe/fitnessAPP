@@ -1,0 +1,21 @@
+<% layout('boilerplate/template') -%>
+
+<% block('head').append('<link rel="stylesheet" type="text/css" href="/css/analytics/analytics.css">') %>
+
+
+<div class = "row">
+    <%- include('../Analytics/analyticsNavigationTabs')%>
+
+    <script>
+        //constants representing the users choices of timescales etc, which can be used by any of the graphs
+        //they selected
+    </script>
+
+    <%- include('../Analytics/' + graph + 'Graph')%>
+
+    <%- include('../Analytics/rangeSliderSteps')%>
+
+
+</div>
+
+

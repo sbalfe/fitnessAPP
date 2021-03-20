@@ -71,6 +71,10 @@ module.exports.buildProfile = async (req, res, next) => {
 
 }
 
+module.exports.stepsData = async (req, res, next) => {
+
+    next();
+}
 module.exports.buildSettings = async(req , res, next) => {
 
     next();

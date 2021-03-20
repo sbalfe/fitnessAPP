@@ -15,21 +15,20 @@ var xAxisValues = []; // Will contain the hours of the day, days of the week, or
 var xAxisLabel; // Will say either 'Hours' or 'Days' depending on the users chosen data period.
 
 // If the user has chosen to view the data for a specific day.
-if(dataPeriodChoice == 'day') {
+if(dataPeriodChoice === 'day') {
     dataPeriodSubDivision = 'hour';
 
     // The day chosen, will have to get this from an input.
     dataPeriodValue = 'DD/MM/YYYY'; 
 
     // Get the data for the number of steps for that day.
-    stepsData = [0, 0, 0, 0, 0, 0, 0, 22, 102, 231, 97, 76, 467, 234, 113, 61, 104, 216, 45, 56, 34, 26, 0, 0];
 
     // The hours of the day.
     xAxisValues = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
                     '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23ß*:00'];
 
     xAxisLabel = 'Hours';
-} else if (dataPeriodChoice == 'week') {
+} else if (dataPeriodChoice === 'week') {
     dataPeriodSubDivision = 'day';
 
     // The day at the start of the week and end of the week, and again, will have to get this from an input.
@@ -42,7 +41,7 @@ if(dataPeriodChoice == 'day') {
     xAxisValues = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
     xAxisLabel = 'Days';
-} else if(dataPeriodChoice == 'month') {
+} else if(dataPeriodChoice === 'month') {
     dataPeriodSubDivision = 'day';
 
     // The month chosen by the user, once again will have to be taken from user input.
@@ -93,7 +92,7 @@ const stepsGraph = Highcharts.chart('steps-graph', {
         enabled: false,
     },
     series: [{
-        name: "Total Steps", // This is a lable for when the user hovers over a goven bar.
+        name: "Total Steps", // This is a label for when the user hovers over a goven bar.
         data: stepsData,
         color: graphColour,
     }],

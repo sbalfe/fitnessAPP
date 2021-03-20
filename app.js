@@ -14,8 +14,8 @@ const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts, r
 const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn , buildProfile, buildSettings} = require('./middleware/middleware')
 const queryRoutes = require('./routes/query/query');
+const graphRoutes = require('./routes/graphRoutes')
 const db = require('./db');
-
 const app = express();
 app.engine('ejs', ejsMate)
 
@@ -46,7 +46,8 @@ app.use(session(sessionConfig))
 
 /* ~~~~~~~~~Main Route middleware ~~~~~~~~ */
 app.use('/query', queryRoutes);
-app.use('/graph', graphRoutes);
+app.use('/graph', graphRoutes)
+//app.use('/analytics', analyticRoutes);
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 app.get('/', catchAsync(async (req, res) => {
@@ -54,7 +55,7 @@ app.get('/', catchAsync(async (req, res) => {
         return res.redirect('/profile');
     }
     res.render('index');
-}))
+}));
 
 app.get('/oauth', googleLogin);
 
@@ -71,6 +72,8 @@ app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
 app.get('/settings', checkLoggedIn , buildSettings, catchAsync(renderSettings));
 
 app.get('/analytics', checkLoggedIn, catchAsync(renderAnalytics));
+
+app.get('/analytics/:path', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get('/ranking', checkLoggedIn, catchAsync(renderRanking));
 
