@@ -9,11 +9,12 @@ const ExpressError= require('./utils/ExpressError')
 const schedule = require('node-schedule');
 const catchAsync = require('./utils/catchAsync');
 const {googleLogin, redirect} = require('./controllers/auth/oauth')
-const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts, renderRanking, renderGoals} = require('./controllers/users/usermw')
+const {logout, renderProfile, renderSettings, renderAnalytics, renderContacts, renderRanking, renderGoals, seedDatabase} = require('./controllers/users/usermw')
 const {steps, sleep} = require('./controllers/API/googleFit')
 const {fetchToken, checkLoggedIn , buildProfile, buildSettings} = require('./middleware/middleware')
-const queryRoutes = require('./routes/query/query');
+const queryRoutes = require('./routes/queryRoutes');
 const graphRoutes = require('./routes/graphRoutes')
+const apiRoutes = require('./routes/apiRoutes');
 const app = express();
 app.engine('ejs', ejsMate)
 
@@ -44,8 +45,8 @@ app.use(session(sessionConfig))
 
 /* ~~~~~~~~~Main Route middleware ~~~~~~~~ */
 app.use('/query', queryRoutes);
-app.use('/graph', graphRoutes)
-//app.use('/analytics', analyticRoutes);
+app.use('/graph', graphRoutes);
+app.use('/api', apiRoutes);
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 app.get('/', catchAsync(async (req, res) => {
@@ -59,17 +60,13 @@ app.get('/oauth', googleLogin);
 
 app.get('/googleUser', catchAsync(redirect));
 
-app.get('/fetchSteps', fetchToken, catchAsync(steps));
+app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
 
-app.get('/fetchSleep', fetchToken, catchAsync(sleep));
+app.get('/analytics/:path', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get('/logout', catchAsync(logout));
 
-app.get('/contacts', checkLoggedIn, catchAsync(renderContacts));
-
 app.get('/settings', checkLoggedIn , buildSettings, catchAsync(renderSettings));
-
-app.get('/analytics/:path', checkLoggedIn, catchAsync(renderAnalytics));
 
 app.get('/ranking', checkLoggedIn, catchAsync(renderRanking));
 
@@ -77,7 +74,10 @@ app.get("/profile",  checkLoggedIn , buildProfile , catchAsync(renderProfile));
 
 app.get("/goals", checkLoggedIn, catchAsync(renderGoals));
 
+app.get("/seed", seedDatabase);
+
 app.get("*", (req, res, next) => {
+    console.log(req.originalUrl)
     next(new ExpressError('page not found', 404));
 })
 

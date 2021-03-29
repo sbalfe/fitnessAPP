@@ -48,24 +48,26 @@ module.exports.checkLoggedIn = async (req ,res, next) => {
 
 module.exports.buildProfile = async (req, res, next) => {
 
-    const steps = await db.query("SELECT date, stepcount ,volume, sleepquality, bedtime, waketime, averagebpm, high, low " +
-        "FROM dailyuserdata INNER JOIN hydration ON hyd = hydrationid " +
-        "INNER JOIN steps ON step=stepsid " +
-        "INNER JOIN sleep ON slee = sleepid " +
-        "INNER JOIN heartrate ON heart = heartrateid " +
-        "INNER JOIN dates ON dailyuserdata.unixid=dates.unixid; ");
+    // const steps = await db.query("SELECT date, stepcount ,volume, sleepquality, bedtime, waketime, averagebpm, high, low " +
+    //     "FROM dailyuserdata INNER JOIN hydration ON hyd = hydrationid " +
+    //     "INNER JOIN steps ON step=stepsid " +
+    //     "INNER JOIN sleep ON slee = sleepid " +
+    //     "INNER JOIN heartrate ON heart = heartrateid " +
+    //     "INNER JOIN dates ON dailyuserdata.unixid=dates.unixid; ");
+    //
 
-    const fetch = steps["rows"][0];
 
-    const {date} = fetch;
+    //const fetch = steps["rows"][0];
 
-    const standardDate = new Date(1615655846163);
+    //const {date} = fetch;
 
-    req.data = {
-        fetch,
-        date: standardDate,
-    }
-    console.log(req.data);
+    //const standardDate = new Date(1615655846163);
+
+   // req.data = {
+        //fetch,
+        //date: standardDate,
+    //}
+    //console.log(req.data);
     next();
 
 }

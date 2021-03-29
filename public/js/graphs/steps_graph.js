@@ -1,99 +1,107 @@
-var graphType = 'column'; // Makes chart a bar graph.
-var yAxisLabel = 'Steps';
-var graphColour = 'rgb(3, 119, 252)'; // The colour of each bar.
+function makeChart()
+{
+    var stepsGraphTitle;
 
-// Changing the value of dataPeriodChoice will display different graphs for the total
-// steps per day, week, or month.
-// You can change this value now to either 'day', 'week', or 'month' to see an example graph for each
-// time period.
-var dataPeriodChoice = 'week'; // Get from chosen radio button.
-var dataPeriodSubDivision; // Is set manually based on dataPeriodChoice.
-var dataPeriodValue; // Get from chosen date/week/month.
+    var stepsGraphXLabel;
 
-var stepsData = []; // Will have the number of steps for each hour/day depending on what the user has chosen to display.
-var xAxisValues = []; // Will contain the hours of the day, days of the week, or days of the chosen month.
-var xAxisLabel; // Will say either 'Hours' or 'Days' depending on the users chosen data period.
+    var stepsGraphAverageLineLabel;
 
-// If the user has chosen to view the data for a specific day.
-if(dataPeriodChoice === 'day') {
-    dataPeriodSubDivision = 'hour';
+    var stepsGraphStart;
+    var stepsGraphInterval;
 
-    // The day chosen, will have to get this from an input.
-    dataPeriodValue = 'DD/MM/YYYY'; 
+    var stepsData = [];
 
-    // Get the data for the number of steps for that day.
 
-    // The hours of the day.
-    xAxisValues = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00',
-                    '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23ß*:00'];
+    if (periodChoice === 'day') {
+        // Step data per hour for a single day.
+        stepsData = [0, 0, 0, 0, 0, 0, 0, 22, 102, 231, 97, 76, 467, 234, 113, 61, 104, 216, 45, 56, 34, 26, 0, 0];
 
-    xAxisLabel = 'Hours';
-} else if (dataPeriodChoice === 'week') {
-    dataPeriodSubDivision = 'day';
+        stepsGraphTitle = 'Steps per hour in day ' + day + '/' + (month + 1) + '/' + year;
 
-    // The day at the start of the week and end of the week, and again, will have to get this from an input.
-    dataPeriodValue = 'DD/MM/YYYY - DD/MM/YYYY';
+        stepsGraphXLabel = 'Hours';
 
-    // Get the data for the number of steps for each day of that week.
-    stepsData = [1423, 2378, 4690, 2165, 2387, 7639, 8214];
+        stepsGraphAverageLineLabel = 'Average steps per hour: ';
 
-    // The days of the week.
-    xAxisValues = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        stepsGraphStart = Date.UTC(year, month, day); // Start of x-axis is user's selected date.
+        stepsGraphInterval = 60 * 60 * 1000; // The x-axis interval is every 60 minutes throughout the day.
+    } else if (periodChoice === 'week') {
+        var startOfWeek = day - (dayOfWeek - 1); // Calcualte the date of the beginning of the week that contains the user's chosen day.
 
-    xAxisLabel = 'Days';
-} else if(dataPeriodChoice === 'month') {
-    dataPeriodSubDivision = 'day';
+        // Steps data per day in a week.
+        stepsData = [1423, 2378, 4690, 2165, 2387, 7639, 8214];
 
-    // The month chosen by the user, once again will have to be taken from user input.
-    dataPeriodValue = 'MM/YYYY';
+        stepsGraphTitle = 'Steps per day in week ' + startOfWeek + '/' + (month + 1) + '/' + year + ' - ' +
+            (startOfWeek + 6) + '/' + (month - 1) + '/' + year;
 
-    // Get the data for the number of steps each day of that month.
-    stepsData = [1423, 2378, 4690, 2165, 2387, 7639, 8214, 1884, 979, 3022, 2499, 3042, 9020, 6063,
-                2221, 3336, 5450, 3396, 3409, 7052, 8405, 1844, 2575, 4522, 3679, 3488, 10843, 5782, 
-                1239, 2653, 3003];
+        stepsGraphXLabel = 'Day';
 
-    // Loop through and generate the date for each day of the chosen month.
-    for(var i = 1; i <= stepsData.length; i++) {
-        if(i < 10) {
-            xAxisValues.push('0' + i + '/' + dataPeriodValue);
-        } else {
-            xAxisValues.push(i + '/' + dataPeriodValue);
-        }
+        stepsGraphAverageLineLabel = 'Average steps per day: ';
+
+        stepsGraphStart = Date.UTC(year, month, startOfWeek); // Start of x-axis is first day of week containing user's selected date.
+        stepsGraphInterval = 24 * 60 * 60 * 1000;  // The x-axis interval is every 24 hours throughout the week.
+    } else if (periodChoice == 'month') {
+        // Steps data for each day in a  month.
+        stepsData = [
+            1423, 2378, 4690, 2165, 2387, 7639, 8214, 1884, 979, 3022, 2499, 3042, 9020, 6063, 2221, 3336,
+            5450, 3396, 3409, 7052, 8405, 1844, 2575, 4522, 3679, 3488, 10843, 5782, 1239, 2653, 3003
+        ];
+
+        stepsGraphTitle = 'Steps per day in month ' + (month + 1) + '/' + year;
+
+        stepsGraphXLabel = 'Day';
+
+        stepsGraphAverageLineLabel = 'Average steps per day: ';
+
+        stepsGraphStart = Date.UTC(year, month, 1); // Start of x-axis is the first day of the month containing the user's chosen date.
+        stepsGraphInterval = 24 * 60 * 60 * 1000; // The x-axis interval is every 24 hours of the month.
     }
 
-    xAxisLabel = 'Days';
+// Calculate the average steps per hour.
+    if (stepsData.length >= 1)
+    {
+        var averageSteps = Math.round(stepsData.reduce((a, b) => (a + b)) / stepsData.length);
+    }
+
+    const stepsGraph = Highcharts.chart('steps-graph', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: stepsGraphTitle
+        },
+        legend: {
+            enabled: false
+        },
+        xAxis: {
+            type: 'datetime', // Generates x-axis based on date object.
+            title: {
+                text: stepsGraphXLabel
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Steps'
+            },
+            // Display a line showing the average steps per hour.
+            plotLines: [{
+                value: averageSteps,
+                color: graphColours[graphColours.length - 1],
+                label: {
+                    text: stepsGraphAverageLineLabel + averageSteps,
+                },
+                zIndex: 4 // Places line above series.
+            }]
+        },
+        plotOptions: {
+            series: {
+                pointStart: stepsGraphStart,
+                pointInterval: stepsGraphInterval
+            }
+        },
+        series: [{
+            name: 'Total steps',
+            data: stepsData,
+            color: graphColours[0]
+        }],
+    });
 }
-
-// Generate the title for the graph based on the user's choices.
-var titleText = 'Steps per ' + dataPeriodSubDivision + ' in ' + dataPeriodChoice + ' ' + dataPeriodValue;
-
-// stepsData = [];
-
-// Create and display the graph
-const stepsGraph = Highcharts.chart('steps-graph', {
-    chart: {
-        type: graphType
-    },
-    title: {
-        text: titleText,
-    },
-    xAxis: {
-        categories: xAxisValues,
-        title: {
-            text: xAxisLabel
-        }
-    },
-    yAxis: {
-        title: {
-            text: yAxisLabel
-        }
-    },
-    legend: {
-        enabled: false,
-    },
-    series: [{
-        name: "Total Steps", // This is a label for when the user hovers over a goven bar.
-        data: stepsData,
-        color: graphColour,
-    }],
-});

@@ -10,3 +10,16 @@ CREATE TABLE users (
 
 );
 
+CREATE TABLE goals (
+
+    goalID SERIAL PRIMARY KEY,
+    userid varchar(255),
+    type varchar(255),
+    startDate integer,
+    goalValue integer,
+    status varchar(255),
+    FOREIGN KEY(userid) REFERENCES users(userid),
+    FOREIGN KEY(startDate) REFERENCES dates(unixID)
+);
+
+
