@@ -22,6 +22,7 @@
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0",
     "node-schedule": "^2.0.0",
+    "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "query-string": "^6.14.0",
     "url-parse": "^1.5.1"

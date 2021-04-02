@@ -18,6 +18,13 @@ function makeChart() {
 
     if (periodChoice == 'day') {
         // This hardcoded data represents an average of every 15 minutes of heart rate data for a single day.
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/query/heartRate',
+            data: {
+                time: 'day'
+            }
+        })
         bpmData = [
             54, 52, 53, 56,
             55, 52, 52, 51,
@@ -64,6 +71,13 @@ function makeChart() {
     } else if (periodChoice == 'week') {
         var startOfWeek = day - (dayOfWeek - 1); // Calcualte the date of the beginning of the week that contains the user's chosen day.
 
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/query/heartRate',
+            data: {
+                time: 'week'
+            }
+        })
         // This hardcoded data represents an average of every 30 minutes of heart rate data for a week.
         bpmData = [
             54, 53, 55, 52, 60, 58, 55, 56, 56, 51, 58, 55, 57, 53, 69, 75, 96, 93, 87, 81, 78, 78, 84, 86, 98, 103, 85, 77, 63,
@@ -109,9 +123,17 @@ function makeChart() {
                 data: bpmData,
                 color: graphColours[0]
             }];
-    } else if (periodChoice == 'month') {
+    } else if (periodChoice === 'month') {
         // This hardcoded data represents the maximum, minimum and average of data readings for each day of the month.
-        // This array will have to be created from the data receievd from the database.
+        // This array will have to be created from the data receieved from the database.
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/query/heartRate',
+            data: {
+                time: 'month'
+            }
+        })
         bpmData = [
             41, 132, 78,
             40, 134, 73,

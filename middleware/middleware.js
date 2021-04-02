@@ -48,26 +48,95 @@ module.exports.checkLoggedIn = async (req ,res, next) => {
 
 module.exports.buildProfile = async (req, res, next) => {
 
-    // const steps = await db.query("SELECT date, stepcount ,volume, sleepquality, bedtime, waketime, averagebpm, high, low " +
-    //     "FROM dailyuserdata INNER JOIN hydration ON hyd = hydrationid " +
-    //     "INNER JOIN steps ON step=stepsid " +
-    //     "INNER JOIN sleep ON slee = sleepid " +
-    //     "INNER JOIN heartrate ON heart = heartrateid " +
-    //     "INNER JOIN dates ON dailyuserdata.unixid=dates.unixid; ");
-    //
+    /* boolean to check if there exists some variable called req.sleep containing the data about the sleep otherwise process
+    * the data as normal */
+    console.log("req.sleep"+req.sleep);
+    let today = new Date(Date.now());
+    let testToday = '2021-03-02'
+    const dateFind = await db.query("SELECT unixid FROM dates WHERE normaldate = $1",[testToday])
+    const {unixid} = dateFind["rows"][0]
+    const dataFetch = await db.query("SELECT stepcount ,volume, sleepquality, bedtime, waketime, averagebpm, high, low " +
+         "FROM dailyuserdata INNER JOIN hydration ON hyd = hydrationid " +
+         "INNER JOIN steps ON step=stepsid " +
+        "INNER JOIN sleep ON slee = sleepid " +
+         "INNER JOIN heartrate ON heart = heartrateid " +
+         "INNER JOIN dates ON dailyuserdata.unixid=dates.unixid WHERE dates.unixid = $1 AND dailyuserdata.userid = $2 ",[unixid, req.session.userid]);
+    const fetch = dataFetch["rows"][0];
 
+    console.log(fetch)
+    const {stepcount, volume, sleepQuality, bedtime, waketime, averagebpm, high, low} = fetch;
 
-    //const fetch = steps["rows"][0];
+    let date = today.toDateString();
+    if (req.sleep){
+        let bedDate= new Date(parseInt(bedtime))
+        let wakeDate = new Date(parseInt(waketime));
+        let sleepTime = new Date(parseInt(parseInt(waketime) - parseInt(bedtime)))
 
-    //const {date} = fetch;
+        let bedTime = bedDate.toLocaleTimeString();
+        let wakeTime = wakeDate.toLocaleTimeString();
+        let sleepHours = sleepTime.toLocaleTimeString().substring(0,2)
+        let sleepMinutes = sleepTime.toLocaleTimeString().substring(3,5)
 
-    //const standardDate = new Date(1615655846163);
+        if (sleepHours[0] == 0){
 
-   // req.data = {
-        //fetch,
-        //date: standardDate,
-    //}
-    //console.log(req.data);
+            let index = 0;
+            sleepHours =  sleepHours.substring(0, index) +  sleepHours.substring(index + 1);
+
+        }
+        if(sleepMinutes[0] === 0){
+            let index = 0;
+            sleepMinutes =  sleepMinutes.substring(0, index) +  sleepMinutes.substring(index + 1);
+        }
+
+        req.data = {
+            sleep: {
+                quality: sleepQuality,
+                wakeTime,
+                bedTime,
+                change:  '+45%',
+                hours: sleepHours,
+                minutes: sleepMinutes
+            },
+            water : {
+                volume
+            },
+            steps: {
+                count: stepcount,
+                change:  '-23%',
+            },
+            heart: {
+                averagebpm,
+                high,
+                low
+            },
+            date
+        }
+    }
+    else{
+        req.data = {
+            sleep: {
+                quality: "",
+                waketime: "",
+                bedTime: "",
+                change:  "",
+                hours: "",
+                minutes: ""
+            },
+            water : {
+                volume
+            },
+            steps: {
+                count: stepcount,
+                change:  '-23%',
+            },
+            heartRate: {
+                averagebpm,
+                high,
+                low
+            },
+            date
+        }
+    }
     next();
 
 }

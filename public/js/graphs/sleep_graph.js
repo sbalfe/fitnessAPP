@@ -4,12 +4,12 @@ function makeChart()
 
     var sleepData = [];
 
-    if (periodChoice == 'day') {
+    if (periodChoice === 'day') {
         // Sleep values for a single day.
         sleepData = [4, 2, 2, 5, 6, 5, 4, 1, 2];
 
         sleepGraphTitle = 'Sleep distribution for day ' + day + '/' + (month + 1) + '/' + year;
-    } else if (periodChoice == 'week') {
+    } else if (periodChoice === 'week') {
         var startOfWeek = day - (dayOfWeek - 1); // Calcualte the date of the beginning of the week that contains the user's chosen day.
 
         // Sleep values for a single week.
@@ -25,7 +25,7 @@ function makeChart()
 
         sleepGraphTitle = 'Sleep distribution for week ' + startOfWeek + '/' + (month + 1) + '/' + year + ' - ' +
             (startOfWeek + 6) + '/' + (month - 1) + '/' + year;
-    } else if (periodChoice == 'month') {
+    } else if (periodChoice === 'month') {
         // Sleep values for a single month.
         sleepData = [
             4, 2, 2, 5, 6, 5, 4, 1, 2, 2, 1, 4, 4, 4, 5, 6, 4,
@@ -55,7 +55,7 @@ function makeChart()
     for (var i = 0; i < sleepData.length; i++) {
         var sleepType = sleepData[i];
 
-        if (typeCounts[sleepType] == undefined) {
+        if (typeCounts[sleepType] === undefined) {
             typeCounts[sleepType] = 1;
         } else {
             typeCounts[sleepType] = typeCounts[sleepType] + 1;

@@ -17,6 +17,7 @@ const graphRoutes = require('./routes/graphRoutes')
 const apiRoutes = require('./routes/apiRoutes');
 const app = express();
 app.engine('ejs', ejsMate)
+const db = require('./db')
 
 /* ~~~~~~  Configurations ~~~~~~~~~~~~~~~~~~~~~~~~ */
 app.set('view engine', 'ejs');
@@ -94,5 +95,33 @@ app.listen(3000, () => {
     console.log("fitnessAPP opened on port 3000");
 })
 
+const dailyUpdates = schedule.scheduleJob('* 0 * * * *', () => {
 
+        /* fill the hour database with 0-23 after creating a new unix id*/
+
+
+    }
+)
+
+const hourlyUpdates = schedule.scheduleJob('0 * * * *', () => {
+
+
+    let today = new Date(Date.now())
+    let currentHour = today.getHours();
+
+    /* TODO */
+    /* fetch the step count within the current hour from google Fit */
+    /* average the bpm from the current hour, minute bucket */
+
+})
+/*
+const fs = require('fs');
+
+let data2 = fs.readFileSync('sleep-2020-12-03.json');
+let sleep2 = JSON.parse(data2)
+
+for (let i = 0; i < sleep2.length ; i++){
+    console.log(sleep2[i].levels)
+}
+*/
 
